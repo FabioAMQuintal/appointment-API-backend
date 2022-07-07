@@ -1,1 +1,1 @@
-# Cotagol API
+# INEEDS challange backend
