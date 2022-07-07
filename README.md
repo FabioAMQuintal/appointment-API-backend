@@ -1,0 +1,1 @@
+# Cotagol API
