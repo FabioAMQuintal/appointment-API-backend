@@ -13,5 +13,5 @@ export default {
     key: process.env.SECRET,
     tokenExpiresIn: process.env.EXPIREIN
   },
-  port: process.env.PORT,
+  port: process.env.PORT || 25189,
 };
