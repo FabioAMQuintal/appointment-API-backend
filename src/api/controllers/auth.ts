@@ -2,8 +2,6 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { EmployerModel } from '../model/index'
 import config from '../../config';
-import dotenv from "dotenv";
-import { IDecodedUser } from '../../types/decodeduser';
 
 class Auth {
 
