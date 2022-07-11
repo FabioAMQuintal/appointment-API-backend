@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express';
 
 export default (req: Request, res: Response, next: NextFunction) => {
-  console.log(JSON.stringify(req.body));
-  next();
+	console.log(JSON.stringify(req.body));
+	next();
 };
