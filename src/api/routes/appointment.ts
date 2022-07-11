@@ -7,7 +7,7 @@ const route = Router();
 export default (app: Router) => {
 	app.use('/appointment', route);
 
-	route.get('/bydate', async (req: Request, res: Response) => {
+	route.get('/bydate', AuthMiddleware, async (req: Request, res: Response) => {
 		const { date } = req.body;
 		try {
 			const newAppointment = await AppointmentController.getByDate(date);
@@ -19,38 +19,48 @@ export default (app: Router) => {
 		}
 	});
 
-	route.get('/bypatient', async (req: Request, res: Response) => {
-		const { authorId } = req.body;
-		try {
-			const newAppointment = await AppointmentController.getByPatient(authorId);
-			if (newAppointment.length) {
-				return res.send({ message: newAppointment }).status(201).end();
+	route.get(
+		'/bypatient',
+		AuthMiddleware,
+		async (req: Request, res: Response) => {
+			const { authorId } = req.body;
+			try {
+				const newAppointment = await AppointmentController.getByPatient(
+					authorId,
+				);
+				if (newAppointment.length) {
+					return res.send({ message: newAppointment }).status(201).end();
+				}
+			} catch (e) {
+				return res.send({ error: e }).status(400).end();
 			}
-		} catch (e) {
-			return res.send({ error: e }).status(400).end();
-		}
-	});
+		},
+	);
 
-	route.post('/newappointment', async (req: Request, res: Response) => {
-		const { authorId, type, date } = req.body;
-		try {
-			const newAppointment = await AppointmentController.newAppointment(
-				authorId,
-				type,
-				date,
-			);
-			if (newAppointment) {
-				return res
-					.send({ message: 'New appointment created' })
-					.status(201)
-					.end();
+	route.post(
+		'/newappointment',
+		AuthMiddleware,
+		async (req: Request, res: Response) => {
+			const { authorId, type, date } = req.body;
+			try {
+				const newAppointment = await AppointmentController.newAppointment(
+					authorId,
+					type,
+					date,
+				);
+				if (newAppointment) {
+					return res
+						.send({ message: 'New appointment created' })
+						.status(201)
+						.end();
+				}
+			} catch (e) {
+				return res.send({ error: e }).status(400).end();
 			}
-		} catch (e) {
-			return res.send({ error: e }).status(400).end();
-		}
-	});
+		},
+	);
 
-	route.get('/:id', async (req: Request, res: Response) => {
+	route.get('/:id', AuthMiddleware, async (req: Request, res: Response) => {
 		const { id } = req.params;
 		try {
 			const appointment = await AppointmentController.getAppointment(
@@ -64,7 +74,7 @@ export default (app: Router) => {
 		}
 	});
 
-	route.put('/:id', async (req: Request, res: Response) => {
+	route.put('/:id', AuthMiddleware, async (req: Request, res: Response) => {
 		const { id } = req.params;
 		const { type } = req.body;
 		try {
@@ -80,7 +90,7 @@ export default (app: Router) => {
 		}
 	});
 
-	route.delete('/:id', async (req: Request, res: Response) => {
+	route.delete('/:id', AuthMiddleware, async (req: Request, res: Response) => {
 		const { id } = req.params;
 		try {
 			const appointment = await AppointmentController.deleteAppointment(

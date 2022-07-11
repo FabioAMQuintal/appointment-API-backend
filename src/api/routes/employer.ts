@@ -7,7 +7,6 @@ const route = Router();
 export default (app: Router) => {
 	app.use('/employer', route);
 
-	//working
 	route.post('/newemployer', async (req: Request, res: Response) => {
 		const { name, password, email } = req.body;
 		const { master } = req.query;

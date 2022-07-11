@@ -17,9 +17,9 @@ export default (app: Router) => {
 			const { name, phone } = req.body;
 			try {
 				const newPatient = await PatientController.createPatient(name, phone);
-				return res.send({ auth: true, data: newPatient }).status(200).end();
+				return res.send({ message: newPatient }).status(200).end();
 			} catch (e) {
-				return res.send({ auth: false, error: e }).status(400).end();
+				return res.send({ error: e }).status(400).end();
 			}
 		},
 	);
@@ -31,9 +31,9 @@ export default (app: Router) => {
 			const { phone } = req.params;
 			try {
 				const newPatient = await PatientController.findPatient(phone);
-				return res.send({ auth: true, data: newPatient }).status(200).end();
+				return res.send({ data: newPatient }).status(200).end();
 			} catch (e) {
-				return res.send({ auth: false, error: e }).status(400).end();
+				return res.send({ error: e }).status(400).end();
 			}
 		},
 	);
