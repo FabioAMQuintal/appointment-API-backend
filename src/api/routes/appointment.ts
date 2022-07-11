@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { AuthMiddleware } from '../middlewares';
 import AppointmentController from '../controllers/appointment';
+import { parseJSON, parseISO } from 'date-fns';
 
 const route = Router();
 
@@ -8,7 +9,7 @@ export default (app: Router) => {
 
   app.use('/appointment', route);
 
-  route.get('/bydate', AuthMiddleware, async (req: Request, res: Response) => {
+  route.get('/bydate', async (req: Request, res: Response) => {
     const { date } = req.body;
     try{
       const newAppointment = await AppointmentController.getByDate(date);
@@ -22,7 +23,7 @@ export default (app: Router) => {
     }
   });
 
-  route.get('/bypatient', AuthMiddleware, async (req: Request, res: Response) => {
+  route.get('/bypatient', async (req: Request, res: Response) => {
     const { authorId } = req.body;
     try{
       const newAppointment = await AppointmentController.getByPatient(authorId);
@@ -36,9 +37,8 @@ export default (app: Router) => {
     }
   });
 
-  route.post('/newappointment', AuthMiddleware, async (req: Request, res: Response) => {
+  route.post('/newappointment', async (req: Request, res: Response) => {
     const { authorId, type, date } = req.body;
-
     try{
       const newAppointment = await AppointmentController.newAppointment(authorId, type, date);
       if(newAppointment){
@@ -51,8 +51,8 @@ export default (app: Router) => {
     }
   });
 
-  route.get('/:id', AuthMiddleware, async (req: Request, res: Response) => {
-    const { id } = req.query;
+  route.get('/:id', async (req: Request, res: Response) => {
+    const { id } = req.params;
     try {
       const appointment = await AppointmentController.getAppointment(Number(id));
       if(appointment){

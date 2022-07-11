@@ -2,10 +2,14 @@ import { connection } from '../index';
 
 class AppointmentModel {
 
-    async createAppointment(authorId: number, type: string, date: Date | string){
+    async createAppointment(authorId: number, type: string, date: Date){
         const newAppointment = await connection.consulta.create({
             data: {
-                authorId,
+                author: {
+                    connect: {
+                        id: Number(authorId)
+                    }
+                },
                 date,
                 type
             }
@@ -14,7 +18,7 @@ class AppointmentModel {
     }
 
     async findTime(date: Date){
-        const isOpenDate = await connection.consulta.findFirst({
+        const isOpenDate = await connection.consulta.findMany({
             where: {
                 date
             }

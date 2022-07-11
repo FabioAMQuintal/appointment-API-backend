@@ -29,7 +29,6 @@ class Auth {
         }
         
         const token = this.generateToken({ email: user.email, name: user.name, id: user.id });
-        console.log(token)
         return token
     }
 }

@@ -35,8 +35,7 @@ export default (app: Router) => {
     try {
       const isTokenValid = await AuthController.authenticate(email, password);
       if (isTokenValid) {
-        //console.log('10000',isTokenValid)
-        return res.send({ auth: true, JWTtoken: isTokenValid }).status(200).end()
+        return res.send({ auth: true, JWTtoken: isTokenValid, user: email }).status(200).end()
       }
     } catch (e) {
       return res.send({ auth: false, error: e }).status(400).end()

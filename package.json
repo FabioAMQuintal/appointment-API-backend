@@ -9,6 +9,7 @@
 	"scripts": {
 		"build": "tsc",
 		"start": "npm run build && nodemon dist/index.js",
+		"start:local": "nodemon src/index.ts",
 		"lint": "eslint ./src --fix",
 		"pretty": "prettier --write \"**/*.{js,jsx,json,md}\"",
 		"postinstall": "tsc",

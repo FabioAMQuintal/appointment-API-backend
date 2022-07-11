@@ -21,8 +21,8 @@ export default (app: Router) => {
     }
   });
 
-  route.get('/patient', AuthMiddleware, async (req: Request, res: Response) => {
-    const { phone } = req.body;
+  route.get('/patient/:phone', AuthMiddleware, async (req: Request, res: Response) => {
+    const { phone } = req.params;
     try {
       const newPatient = await PatientController.findPatient(phone);
       return res.send({ auth: true, data: newPatient }).status(200).end()
