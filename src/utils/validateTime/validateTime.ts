@@ -11,7 +11,7 @@ import { IDateInterval } from '../../types/dateInterval';
 class ValidateTime {
 	public checkValidTime(date: string): boolean {
 		const parsedDate = this.parseTime(date);
-		const hours = getHours(parsedDate) + 3;
+		const hours = getHours(parsedDate);
 		const minutes = getMinutes(parsedDate);
 		const seconds = getSeconds(parsedDate);
 		const mili = getMilliseconds(parsedDate);
@@ -45,7 +45,7 @@ class ValidateTime {
 			Number(init[0]),
 			Number(init[1]) - 1,
 			Number(init[2]),
-			8 - 3,
+			8,
 			0,
 			0,
 			0,
@@ -54,7 +54,7 @@ class ValidateTime {
 			Number(final[0]),
 			Number(final[1]) - 1,
 			Number(final[2]),
-			17 - 3,
+			17,
 			0,
 			0,
 			0,
