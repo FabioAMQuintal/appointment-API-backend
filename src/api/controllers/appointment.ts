@@ -26,7 +26,7 @@ class Appointment {
 					return Promise.reject('Appointment must be between 08 AM and 5 PM');
 				}
 			} else {
-				return Promise.reject('Something went wrong');
+				return Promise.reject('This date and time are no available');
 			}
 		} catch (e: any) {
 			return e;
@@ -101,3 +101,12 @@ class Appointment {
 	}
 }
 export default new Appointment();
+
+// fernandas182@gmail.com
+// ericaamafabio 
+
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZlcm5hbmRhczE4MkBnbWFpbC5jb20iLCJuYW1lIjoiRXJpY2EiLCJpZCI6NywiaWF0IjoxNjU3NTc1MTEyLCJleHAiOjE2NTc1NzUyMTJ9.ok20GY8FQCnEonAY_CRq6RSXdlEgaB8B7-S6OEFWdxs
+
+
+// 5 -> 8 no sistema
+// 14 -> 17 no sistema

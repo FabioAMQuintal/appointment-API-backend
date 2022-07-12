@@ -15,7 +15,7 @@ class ValidateTime {
 		const minutes = getMinutes(parsedDate);
 		const seconds = getSeconds(parsedDate);
 		const mili = getMilliseconds(parsedDate);
-
+		console.log(`parsed date: ${parsedDate}, hours: ${hours}, minutes: ${minutes}, seconds: ${seconds}, mili: ${mili}`)
 		let valid: boolean;
 
 		if (hours >= 8 && hours <= 16) {
@@ -59,6 +59,8 @@ class ValidateTime {
 			0,
 			0,
 		);
+		console.log(`initial Interval: ${initialInterval}`)
+		console.log(`final Interval: ${finalInterval}`)
 		return {
 			initial: initialInterval,
 			final: finalInterval,
