@@ -12,7 +12,7 @@ export default (app: Router) => {
 		const { master } = req.query;
 
 		if (master !== process.env.MASTER) {
-			return res.send({ message: 'Invalid Data' }).status(400).end();
+			return res.send({ message: 'Invalid Data' }).status(401).end();
 		}
 
 		try {
@@ -40,7 +40,7 @@ export default (app: Router) => {
 					.end();
 			}
 		} catch (e) {
-			return res.send({ auth: false, error: e }).status(400).end();
+			return res.send({ auth: false, error: e }).status(401).end();
 		}
 	});
 

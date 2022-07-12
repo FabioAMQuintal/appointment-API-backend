@@ -2,7 +2,6 @@ import { PatientModel } from '../model/index';
 
 class Patient {
 	async createPatient(name: string, phone: string) {
-		console.log(Number(phone));
 		if (!(name && Number(phone))) {
 			return Promise.reject(
 				'Name and phone are necessary to create an patient. Phone must be only numbers',

@@ -12,10 +12,10 @@ export default (app: Router) => {
 		try {
 			const newAppointment = await AppointmentController.getByDate(date);
 			if (newAppointment) {
-				return res.send({ message: newAppointment }).status(201).end();
+				return res.send({ message: newAppointment }).status(200).end();
 			}
 		} catch (e) {
-			return res.send({ error: e }).status(400).end();
+			return res.send({ error: e }).status(404).end();
 		}
 	});
 
@@ -29,10 +29,10 @@ export default (app: Router) => {
 					authorId,
 				);
 				if (newAppointment.length) {
-					return res.send({ message: newAppointment }).status(201).end();
+					return res.send({ message: newAppointment }).status(200).end();
 				}
 			} catch (e) {
-				return res.send({ error: e }).status(400).end();
+				return res.send({ error: e }).status(404).end();
 			}
 		},
 	);
@@ -67,10 +67,10 @@ export default (app: Router) => {
 				Number(id),
 			);
 			if (appointment) {
-				return res.send({ message: appointment }).status(201).end();
+				return res.send({ message: appointment }).status(200).end();
 			}
 		} catch (e) {
-			return res.send({ error: e }).status(400).end();
+			return res.send({ error: e }).status(404).end();
 		}
 	});
 
@@ -83,10 +83,10 @@ export default (app: Router) => {
 				type,
 			);
 			if (appointment) {
-				return res.send({ message: appointment }).status(203).end();
+				return res.send({ message: appointment }).status(202).end();
 			}
 		} catch (e) {
-			return res.send({ error: e }).status(400).end();
+			return res.send({ error: e }).status(404).end();
 		}
 	});
 
@@ -99,11 +99,11 @@ export default (app: Router) => {
 			if (appointment) {
 				return res
 					.send({ message: 'Appointment has been deleted' })
-					.status(203)
+					.status(200)
 					.end();
 			}
 		} catch (e) {
-			return res.send({ error: e }).status(400).end();
+			return res.send({ error: e }).status(404).end();
 		}
 	});
 };

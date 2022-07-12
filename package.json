@@ -12,7 +12,6 @@
 		"start:local": "nodemon src/index.ts",
 		"lint": "eslint ./src --fix",
 		"pretty": "prettier --write \"**/*.{ts,js,jsx,json,md}\"",
-		"postinstall": "tsc",
 		"commit": "git-cz"
 	},
 	"keywords": [],

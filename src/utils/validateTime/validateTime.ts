@@ -8,14 +8,14 @@ import {
 } from 'date-fns';
 import { IDateInterval } from '../../types/dateInterval';
 
+//increase 3 hours in hours to match pt-br if running locally
 class ValidateTime {
 	public checkValidTime(date: string): boolean {
 		const parsedDate = this.parseTime(date);
-		const hours = getHours(parsedDate);
+		const hours = getHours(parsedDate); // getHours(parsedDate) + 3
 		const minutes = getMinutes(parsedDate);
 		const seconds = getSeconds(parsedDate);
 		const mili = getMilliseconds(parsedDate);
-		console.log(`parsed date: ${parsedDate}, hours: ${hours}, minutes: ${minutes}, seconds: ${seconds}, mili: ${mili}`)
 		let valid: boolean;
 
 		if (hours >= 8 && hours <= 16) {
@@ -45,7 +45,7 @@ class ValidateTime {
 			Number(init[0]),
 			Number(init[1]) - 1,
 			Number(init[2]),
-			8,
+			8, // 8 - 3
 			0,
 			0,
 			0,
@@ -54,13 +54,11 @@ class ValidateTime {
 			Number(final[0]),
 			Number(final[1]) - 1,
 			Number(final[2]),
-			17,
-			0,
+			17, // 17-3
+			0, 
 			0,
 			0,
 		);
-		console.log(`initial Interval: ${initialInterval}`)
-		console.log(`final Interval: ${finalInterval}`)
 		return {
 			initial: initialInterval,
 			final: finalInterval,
